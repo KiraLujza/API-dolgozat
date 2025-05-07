@@ -18,10 +18,16 @@ export default class Elemek{
    }
    okEvent() {
     window.addEventListener("ok", (event) => {
-        
-      this.#lista[event.detail].state = true;
-      this.megjelenit()
-      console.log(this.#lista)
+      const { index, isCorrect } = event.detail;
+      this.#lista[index].state = isCorrect;
+      if (this.#lista[index].state = isCorrect){
+        this.#pElem.innerHTML += "<p>✅</p>";
+      }else{
+        this.#pElem.innerHTML += "<p>❌</p>";
+      }
+      this.megjelenit();
+      console.log(this.#lista);
     });
   }
+  
 }

@@ -7,7 +7,7 @@ export default class Elem{
         this.#pElem = pElem;
         this.megjelenit();
         this.OKgomb = this.#pElem.querySelector(".elem:last-child #gomba");
-        this.inputElem = this.#pElem.querySelector(".elem:last-child")
+        this.inputElem = this.#pElem.querySelector(".elem:last-child #input");
         this.ok();
         
       
@@ -26,17 +26,18 @@ export default class Elem{
          <input type="text" id="input">
         <button id="gomba">OK</button>   
                     </div> `
-        console.log(this.#obj)
+       
          this.#pElem.insertAdjacentHTML("beforeend", html);
-         console.log(html)
+         
          
     }
-    ok(){
+    ok() {
         this.OKgomb.addEventListener("click", () => {
-            console.log(this.#index)
-          const e = new CustomEvent("ok", { detail:jjj==ddd})
-          window.dispatchEvent(e)
-        })
+          const userInput = this.inputElem.value.trim();
+          const isCorrect = userInput === this.#obj.valasztas[0];
+          const event = new CustomEvent("ok", { detail: isCorrect });
+          window.dispatchEvent(event);
+        });
       }
     
 }
